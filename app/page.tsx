@@ -12,7 +12,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-stretch">
       <Header />
       <div className="flex flex-col -mt-[26px] w-[736px] self-center">
-        <Button title="Create Task" onClick={() => { router.push("/edit-task") }} />
+        <Button title="Create Task" type="add" onClick={() => { router.push("/edit-task") }} />
       </div>
       <Tasks />
     </div>

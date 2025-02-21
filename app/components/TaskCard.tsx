@@ -5,7 +5,7 @@ import axios from "axios";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-export default function Task({ task, tasks, setTasks }: { task: TaskType, tasks: TaskType[], setTasks: any }) {
+export default function TaskCard({ task, tasks, setTasks }: { task: TaskType, tasks: TaskType[], setTasks: any }) {
   const router = useRouter();
 
   const completeTask = async () => {

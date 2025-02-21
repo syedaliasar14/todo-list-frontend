@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Task as TaskType } from "../types";
-import Task from "./Task";
+import TaskCard from "./TaskCard";
 import Image from "next/image";
 import axios from "axios";
 
@@ -53,7 +53,7 @@ export default function Tasks() {
             </div>
           ) : (
             tasks.map((task) => (
-              <Task key={task.id} task={task} tasks={tasks} setTasks={setTasks} />
+              <TaskCard key={task.id} task={task} tasks={tasks} setTasks={setTasks} />
             ))))
         }
       </div>
