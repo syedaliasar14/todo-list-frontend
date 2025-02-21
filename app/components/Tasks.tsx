@@ -41,7 +41,7 @@ export default function Tasks() {
 
       <div className="w-[736px] mt-6 flex flex-col gap-3">
         {loading ? (
-          <div className="flex justify-center items-center mt-16"></div>
+          <div className="flex justify-center items-center mt-16 text-sm text-[#808080] font-bold">Loading...</div>
         ) : (
           tasks.length === 0 ? (
             <div className="flex flex-col items-center border-t border-t-[#333333] pt-16 gap-4">
