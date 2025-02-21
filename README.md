@@ -54,11 +54,11 @@ This is a Todo List App for creating, editing, retrieving and deleting tasks. [T
 
     Create a `.env` file in the root directory and add the following
     ```env
-    DATABASE_URL=<LOCATED IN MY EMAIL>
+    DATABASE_URL=<REFER TO MY EMAIL>
     PORT=5000
     ```
 
-4. **Initialize the database**
+4. **Generate Prisma Client**
 
     ```sh
     npx prisma generate
