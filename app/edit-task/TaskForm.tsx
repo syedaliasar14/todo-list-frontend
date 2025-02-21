@@ -38,9 +38,7 @@ export default function TaskForm() {
     }
   }, [id]);
 
-  const submit = async (e?: any) => {
-    e && e.preventDefault();
-
+  const submit = async () => {
     setError("");
     if (!title) {
       setError("Please enter a title for the task.");
@@ -64,7 +62,7 @@ export default function TaskForm() {
   };
 
   return (
-    <form className="flex flex-col my-[91px] gap-12 w-[736px] self-center" onSubmit={(e) => { submit(e) }}>
+    <form className="flex flex-col my-[91px] gap-12 w-[736px] self-center" onSubmit={(e) => e.preventDefault()}>
       <Link href="/" className="flex items-center gap-2">
         <Image src="/arrow-left.svg" alt="back" width={24} height={24} />
       </Link>
