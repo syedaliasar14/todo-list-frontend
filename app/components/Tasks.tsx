@@ -2,21 +2,28 @@ import { useEffect, useState } from "react";
 import { Task as TaskType } from "../types";
 import Task from "./Task";
 import Image from "next/image";
+import axios from "axios";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function Tasks() {
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const numCompleted = tasks.filter((task) => task.completed).length;
+  const [loading, setLoading] = useState(true);
 
   // Fetch tasks as soon as the component mounts
   useEffect(() => {
-    // fetch("/api/tasks")
-    //   .then((res) => res.json())
-    //   .then((data) => setTasks(data));
-    setTasks([
-      // { id: "1", title: "Task 1", color: "red", completed: false },
-      // { id: "2", title: "Task 2", color: "green", completed: true },
-      // { id: "3", title: "Task 3", color: "blue", completed: false },
-    ]);
+    const fetchTasks = async () => {
+      try {
+        const { data } = await axios.get(`${API_URL}/tasks`);
+        setTasks(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching tasks:", error);
+      }
+    };
+
+    fetchTasks();
   }, []);
 
   return (
@@ -33,18 +40,21 @@ export default function Tasks() {
       </div>
 
       <div className="w-[736px] mt-6 flex flex-col gap-3">
-        {tasks.length === 0 ? (
-          <div className="flex flex-col items-center border-t border-t-[#333333] pt-16 gap-4">
-            <Image src="/Clipboard.svg" alt="clipboard" width={56} height={56} />
-            <div className="text-base text-[#808080] h-[66px] flex flex-col justify-between items-center">
-              <div className="font-bold">You don&apos;t have any tasks registered yet.</div>
-              <div>Create tasks and organize your to-do items.</div>
-            </div>
-          </div>
+        {loading ? (
+          <div className="flex justify-center items-center mt-16"></div>
         ) : (
-          tasks.map((task) => (
-            <Task key={task.id} task={task} />
-          )))
+          tasks.length === 0 ? (
+            <div className="flex flex-col items-center border-t border-t-[#333333] pt-16 gap-4">
+              <Image src="/Clipboard.svg" alt="clipboard" width={56} height={56} />
+              <div className="text-base text-[#808080] h-[66px] flex flex-col justify-between items-center">
+                <div className="font-bold">You don&apos;t have any tasks registered yet.</div>
+                <div>Create tasks and organize your to-do items.</div>
+              </div>
+            </div>
+          ) : (
+            tasks.map((task) => (
+              <Task key={task.id} task={task} tasks={tasks} setTasks={setTasks} />
+            ))))
         }
       </div>
 

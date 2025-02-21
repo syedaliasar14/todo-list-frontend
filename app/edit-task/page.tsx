@@ -6,15 +6,42 @@ import Image from "next/image";
 import Button from "../components/Button";
 import { useState } from "react";
 import ColorOptions from "./ColorOptions";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function EditTask() {
   const [title, setTitle] = useState("");
   const [color, setColor] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const submit = async (e?: any) => {
+    e && e.preventDefault();
+
+    setError("");
+    if (!title) {
+      setError("Please enter a title for the task.");
+      return;
+    } else if (!color) {
+      setError("Please select a color for the task.");
+      return;
+    }
+
+    try {
+      await axios.post(`${API_URL}/tasks`, { title, color });
+      router.push("/");
+    } catch (error) {
+      console.error("Error creating task:", error);
+      setError("An error occurred while creating the task. Please try again.");
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-stretch">
       <Header />
-      <form className="flex flex-col my-[91px] gap-12 w-[736px] self-center">
+      <form className="flex flex-col my-[91px] gap-12 w-[736px] self-center" onSubmit={(e) => { submit(e) }}>
         <Link href="/" className="flex items-center gap-2">
           <Image src="/arrow-left.svg" alt="back" width={24} height={24} />
         </Link>
@@ -33,7 +60,9 @@ export default function EditTask() {
           </div>
         </div>
 
-        <Button title="Add Task" onClick={() => { }} />
+        {error && <div className="text-red-500 text-sm font-bold">{error}</div>}
+
+        <Button title="Add Task" onClick={() => submit()} />
       </form>
     </div>
   );
