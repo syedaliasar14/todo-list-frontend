@@ -1,6 +1,6 @@
 # 🎯 Todo List App (Full-Stack Take Home Test)
 
-This is a Todo List App for creating, editing, retrieving and deleting tasks. [Try out the complete app here!🚀](https://todo-list-frontend-liwj28j45-syedaliasar14s-projects.vercel.app/)
+This is a Todo List App for creating, editing, retrieving and deleting tasks. [Try out the complete app here!🚀](https://todo-list-frontend-teal.vercel.app/)
 
 ## Tech Stack
 
