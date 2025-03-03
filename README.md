@@ -1,4 +1,4 @@
-# 🎯 Todo List App (Full-Stack Take Home Test)
+# 🎯 Todo List App
 
 This is a Todo List App for creating, editing, retrieving and deleting tasks. [Try out the complete app here!🚀](https://todo-list-frontend-teal.vercel.app/)
 
@@ -54,7 +54,7 @@ This is a Todo List App for creating, editing, retrieving and deleting tasks. [T
 
     Create a `.env` file in the root directory and add the following
     ```env
-    DATABASE_URL=<REFER TO MY EMAIL>
+    DATABASE_URL=<REACH OUT TO ME>
     PORT=5000
     ```
 
@@ -84,5 +84,5 @@ This is a Todo List App for creating, editing, retrieving and deleting tasks. [T
 
 - The MySQL database is hosted on the cloud by Aiven so dev and prod use the same database for this project.
 - The frontend is hosted via **Vercel** and the backend is hosted via **Render**; it may take a minute for the data to load the first time you visit the prod application.
-- For security reasons, please refer to my email to retrieve the value for ```DATABASE_URL``` environment variable.
+- For security reasons, please reach out to me to receive the value for ```DATABASE_URL``` environment variable.
 
